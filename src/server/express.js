@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 import express from 'express';
-import React from 'react';
+import db from '../lib/db';
 
 import graphql from './graphql';
 
@@ -11,6 +11,9 @@ const isDev = process.env.NODE_ENV === 'development';
 let isBuilt = false;
 
 graphql(server);
+
+db.authenticate().then(() => console.log('success'))
+	.catch(err => console.log('ERROR' + err));
 
 server.use('/static', express.static('static'));
 

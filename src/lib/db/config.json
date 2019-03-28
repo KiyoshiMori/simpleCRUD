@@ -4,6 +4,9 @@
     "password": 19066611,
     "database": "simplecrud",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "define": {
+      "timestamps": false
+    }
   }
 }

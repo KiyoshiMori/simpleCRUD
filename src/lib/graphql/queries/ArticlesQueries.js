@@ -12,3 +12,16 @@ export const getArticles = gql`
 		}
 	}
 `;
+
+export const postArticle = gql`
+	mutation ($token: String, $text: String, $header: String) {
+		createArticle(input: {token: $token, text: $text, header: $header}) {
+			id
+			author
+			header
+			text
+			created_at
+			updated_at
+		}
+	}
+`;

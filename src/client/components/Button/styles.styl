@@ -1,15 +1,27 @@
+@import '../../styles/_variables.styl';
+
 .button
   border 1px solid rgba(0, 0, 0, 0.1)
   color darkgrey
   font-weight bold
   display flex
   align-items center
+  justify-content center
   padding 0 5px
   cursor pointer
   transition all 0.7s ease
+  &Secondary
+    color white
+    background black
+    margin 5px 0 0
+    &:hover
+      background $black !important
   &:hover
     background black
     color white
+  &small
+    width 100px
+    padding 5px
 .icon
   padding 0 5px
   font-size: 30px

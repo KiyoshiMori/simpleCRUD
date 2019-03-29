@@ -24,7 +24,7 @@ export default class ArticlesList extends Component {
 				<Col size={12} className={styles.containerHeader}>
 					<Heading type="h1">Articles</Heading>
 					<Button icon="plus" onClick={openModal}>
-						Create an article
+						Post an article
 					</Button>
 				</Col>
 				{data?.map(article => (

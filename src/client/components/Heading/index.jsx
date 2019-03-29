@@ -9,15 +9,17 @@ export default class Header extends PureComponent {
 		type: PropTypes.oneOf(['h1', 'h2', 'h3']).isRequired,
 		secondary: PropTypes.bool,
 		bold: PropTypes.bool,
+		color: PropTypes.string,
 	};
 
 	static defaultProps = {
 		secondary: false,
 		bold: false,
+		color: null,
 	};
 
 	render() {
-		const { type, secondary, bold, children } = this.props;
+		const { type, secondary, bold, color, children } = this.props;
 
 		const classes = cx(
 			styles[type],
@@ -26,7 +28,7 @@ export default class Header extends PureComponent {
 		);
 
 		return (
-			<div className={classes}>
+			<div className={classes} style={{ color }}>
 				{children}
 			</div>
 		);

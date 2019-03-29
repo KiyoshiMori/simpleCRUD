@@ -10,17 +10,23 @@ export default class Row extends PureComponent {
 		children: PropTypes.node.isRequired,
 		className: PropTypes.string,
 		icon: PropTypes.oneOf(['add']),
+		size: PropTypes.oneOf(['small', 'default']),
+		secondary: PropTypes.bool,
 	};
 
 	static defaultProps = {
 		className: null,
 		icon: null,
+		size: 'default',
+		secondary: false,
 	};
 
 	render() {
-		const { children, className, icon, ...rest } = this.props;
+		const { children, className, icon, size, secondary, ...rest } = this.props;
 		const classes = cx(
 			styles.button,
+			size && styles[`button${size}`],
+			secondary && styles.buttonSecondary,
 			className,
 		);
 

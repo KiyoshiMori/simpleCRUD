@@ -62,7 +62,7 @@ export default class MainPage extends Component {
 							},
 						]}
 					>
-						{mutate => (
+						{(mutate, { loading }) => (
 							<Row>
 								<Col size={12} className={styles.modalHeader}>
 									<Heading
@@ -74,9 +74,9 @@ export default class MainPage extends Component {
 								</Col>
 								<Col size={6} className={styles.modalContent}>
 									<form
-										onSubmit={e => {
+										onSubmit={async e => {
 											e.preventDefault();
-											mutate({
+											await mutate({
 												variables: {
 													header: articleHeader,
 													text: articleText,
@@ -104,6 +104,8 @@ export default class MainPage extends Component {
 											size="small"
 											secondary
 											type="submit"
+											loading={loading}
+											disabled={!articleHeader || !articleText}
 										>
 											Save
 										</Button>

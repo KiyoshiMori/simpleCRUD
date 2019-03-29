@@ -12,6 +12,7 @@ export default class Row extends PureComponent {
 		icon: PropTypes.oneOf(['add']),
 		size: PropTypes.oneOf(['small', 'default']),
 		secondary: PropTypes.bool,
+		loading: PropTypes.bool,
 	};
 
 	static defaultProps = {
@@ -19,26 +20,28 @@ export default class Row extends PureComponent {
 		icon: null,
 		size: 'default',
 		secondary: false,
+		loading: false,
 	};
 
 	render() {
-		const { children, className, icon, size, secondary, ...rest } = this.props;
+		const { children, className, icon, size, secondary, loading, ...rest } = this.props;
 		const classes = cx(
 			styles.button,
 			size && styles[`button${size}`],
 			secondary && styles.buttonSecondary,
+			loading && styles.buttonLoading,
 			className,
 		);
 
 		return (
-			<div className={classes} {...rest}>
+			<button className={classes} {...rest}>
 				{children}
 				{icon && (
 					<div className={styles.icon}>
 						<FontAwesomeIcon icon={icon} />
 					</div>
 				)}
-			</div>
+			</button>
 		);
 	}
 }

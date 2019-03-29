@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Query } from 'react-apollo';
 
-import { Row, Col } from 'components/Grid';
+import { getArticles } from 'lib/graphql/queries/ArticlesQueries';
+
 import ArticlesList from './components/ArticlesList';
 
 export default class MainPage extends Component {
@@ -33,7 +35,16 @@ export default class MainPage extends Component {
 		const { articles } = this.state;
 
 		return (
-			<ArticlesList data={articles} />
+			<Query
+				query={getArticles}
+				variables={{
+					token: 'test',
+				}}
+			>
+				{({ data }) => (
+					<ArticlesList data={data?.getArticles} />
+				)}
+			</Query>
 		);
 	}
 }

@@ -6,6 +6,7 @@ export default {
 		alias: {
 			components: path.resolve(__dirname, '../../src/client/components'),
 			containers: path.resolve(__dirname, '../../src/client/containers'),
+			lib: path.resolve(__dirname, '../../src/lib'),
 		},
 		extensions: ['.js', '.jsx'],
 	},

@@ -3,6 +3,10 @@ export default `
 		token: String
 	}
 	
+	type Image {
+		file_path: String
+	}
+	
 	type articleResponse {
 		author: String
 		created_at: String
@@ -10,6 +14,7 @@ export default `
 		header: String
 		text: String
 		id: Int
+		articlesimage: Image
 	}
 	
 	input createArticleInput {

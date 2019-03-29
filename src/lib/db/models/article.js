@@ -2,7 +2,7 @@ import DataTypes from 'sequelize';
 import sequelize from '../index';
 
 module.exports = () => {
-	const Article = sequelize.define('Articles', {
+	const Article = sequelize.define('articles', {
 		header: DataTypes.STRING,
 		text: DataTypes.TEXT,
 		created_at: DataTypes.DATE,
@@ -15,7 +15,12 @@ module.exports = () => {
 		},
 	}, {
 		timestamps: false,
-    });
+		underscored: true,
+	});
+
+	Article.associate = models => {
+		Article.hasOne(models.articlesimages);
+	};
 
 	return Article;
 };

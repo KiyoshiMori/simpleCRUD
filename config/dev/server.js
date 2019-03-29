@@ -22,17 +22,17 @@ export default {
 			{
 				test: /\.styl$/,
 				use: [
-					MiniCSSExtractPlugin.loader,
+					'isomorphic-style-loader',
 					{
 						loader: 'css-loader',
 						options: {
 							modules: true,
-							localIdentName: '[local]-[hash]'
-						}
+							localIdentName: '[local]-[hash]',
+						},
 					},
 					'postcss-loader',
-					'stylus-loader'
-				]
+					'stylus-loader',
+				],
 			},
 		],
 	},
@@ -46,8 +46,8 @@ export default {
 		path: path.resolve(__dirname, '../build'),
 		libraryTarget: 'commonjs2',
 	},
-	devtool: 'source-map',
+	devtool: false,
 	plugins: [
 		new MiniCSSExtractPlugin(),
-	]
+	],
 };

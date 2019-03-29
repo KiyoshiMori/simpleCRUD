@@ -1,6 +1,12 @@
+import path from 'path';
+
 export default {
-	mode: 'production',
+	mode: 'development',
 	resolve: {
+		alias: {
+			components: path.resolve(__dirname, '../../src/client/components'),
+			containers: path.resolve(__dirname, '../../src/client/containers'),
+		},
 		extensions: ['.js', '.jsx'],
 	},
 	module: {

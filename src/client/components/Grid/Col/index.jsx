@@ -18,6 +18,7 @@ export default class Col extends PureComponent {
 		offsetSize: PropTypes.number,
 		stretchHeight: PropTypes.bool,
 		children: PropTypes.node.isRequired,
+		className: PropTypes.string,
 	};
 
 	static defaultProps = {
@@ -27,6 +28,7 @@ export default class Col extends PureComponent {
 		sizeSm: null,
 		offsetSize: null,
 		stretchHeight: false,
+		className: null,
 	};
 
 	render() {

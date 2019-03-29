@@ -1,12 +1,11 @@
 @import "../../../styles/_variables.styl"
 
 .row
-  width: 100%
-  max-width: ($pageWidth + $colGap)
-  margin-left: auto
-  margin-right: auto
-  display: flex
-  flex-flow: row wrap
+  max-width ($pageWidth + $colGap)
+  margin-left auto
+  margin-right auto
+  display flex
+  flex-wrap wrap
   .row
     width: auto
     margin-left: (-1 * $colGap/2)

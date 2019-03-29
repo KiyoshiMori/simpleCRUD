@@ -18,14 +18,14 @@ export default class Row extends PureComponent {
 	};
 
 	render() {
-		const { children, className, icon } = this.props;
+		const { children, className, icon, ...rest } = this.props;
 		const classes = cx(
 			styles.button,
 			className,
 		);
 
 		return (
-			<div className={classes}>
+			<div className={classes} {...rest}>
 				{children}
 				{icon && (
 					<div className={styles.icon}>

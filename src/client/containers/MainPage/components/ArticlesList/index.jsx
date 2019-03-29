@@ -15,7 +15,7 @@ export default class ArticlesList extends Component {
 	};
 
 	render() {
-		const { data } = this.props;
+		const { data, openModal } = this.props;
 
 		console.log('Article list data:', data);
 
@@ -23,7 +23,7 @@ export default class ArticlesList extends Component {
 			<Row className={styles.container}>
 				<Col size={12} className={styles.containerHeader}>
 					<Heading type="h1">Articles</Heading>
-					<Button icon="plus">
+					<Button icon="plus" onClick={openModal}>
 						Create an article
 					</Button>
 				</Col>

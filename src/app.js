@@ -6,7 +6,8 @@ import { ApolloProvider } from 'react-apollo';
 
 import App from './client';
 import client from './lib/graphql';
-import 'semantic-ui-css/semantic.min.css';
+
+import './styles.styl';
 
 const render = Component => {
 	ReactDOM.hydrate(

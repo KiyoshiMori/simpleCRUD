@@ -19,4 +19,3 @@ module.exports = () => {
 
 	return Article;
 };
-// save

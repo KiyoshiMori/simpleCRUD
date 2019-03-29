@@ -6,7 +6,7 @@ import styles from './styles.styl';
 
 export default class Header extends PureComponent {
 	static propTypes = {
-		type: PropTypes.oneOf('h1', 'h2', 'h3').isRequired,
+		type: PropTypes.oneOf(['h1', 'h2', 'h3']).isRequired,
 		secondary: PropTypes.bool,
 		bold: PropTypes.bool,
 	};

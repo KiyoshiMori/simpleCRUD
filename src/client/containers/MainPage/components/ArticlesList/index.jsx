@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { Row, Col } from 'components/Grid';
 import Heading from 'components/Heading';
+import Button from 'components/Button';
 import styles from './styles.styl';
 
 export default class ArticlesList extends Component {
@@ -22,7 +23,9 @@ export default class ArticlesList extends Component {
 			<Row className={styles.container}>
 				<Col size={12} className={styles.containerHeader}>
 					<Heading type="h1">Articles</Heading>
-					<Heading type="h1">Create an article</Heading>
+					<Button icon="plus">
+						Create an article
+					</Button>
 				</Col>
 				{data?.map(article => (
 					<Col size={3} className={styles.article}>
@@ -35,7 +38,9 @@ export default class ArticlesList extends Component {
 						<Heading type="h2" bold>
 							{article.header}
 						</Heading>
-						Read more ->
+						<Heading type="h2" secondary>
+							{article.text}
+						</Heading>
 					</Col>
 				))}
 			</Row>

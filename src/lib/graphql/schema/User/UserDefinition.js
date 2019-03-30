@@ -5,20 +5,21 @@ export default `
 		role: String
 	}
 	
-	input signupInput {
+	input signInput {
 		login: String
 		password: String
 	}
 	
-	type signupResponse {
+	type signResponse {
 		token: String
 	}
 
 	extend type Query {
 		getInfo: Info
+		login(input: signInput): signResponse
 	}
 	
 	extend type Mutation {
-		signup(input: signupInput): signupResponse
+		signup(input: signInput): signResponse
 	}
 `;

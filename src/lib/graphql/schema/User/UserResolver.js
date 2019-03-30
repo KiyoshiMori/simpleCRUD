@@ -15,6 +15,27 @@ export default {
 				};
 			}
 		},
+		async login(_, { input }, { setCookie }) {
+			const { login, password } = input;
+
+			return await db.users.findOne({
+				where: {
+					login,
+					password,
+				},
+				include: [{
+					model: db.users_info,
+					attributes: ['id', 'role', 'username'],
+				}],
+			}).then(data => {
+				console.log({ data: data.get() });
+				const token = generateJWT(data.get().users_info.get());
+
+				setCookie('jwt', token);
+
+				return { token };
+			});
+		},
 	},
 	Mutation: {
 		async signup(_, { input }, { setCookie }) {

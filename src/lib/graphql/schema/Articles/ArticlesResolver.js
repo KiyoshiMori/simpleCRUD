@@ -46,16 +46,13 @@ const processUpload = async upload => {
 export default {
 	Query: {
 		async getArticles(_, __, { user }) {
-			return await checkToken(
-				user,
-				() => articles.findAll({
-					include: [{
-						model: articlesimages,
-						attributes: ['file_path'],
-					}],
-					order: [['updated_at', 'DESC']],
-				}).then(data => data.map(node => node.get({ plain: true }))),
-			);
+			return await articles.findAll({
+				include: [{
+					model: articlesimages,
+					attributes: ['file_path'],
+				}],
+				order: [['updated_at', 'DESC']],
+			}).then(data => data.map(node => node.get({ plain: true })));
 		},
 	},
 	Mutation: {

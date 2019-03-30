@@ -14,7 +14,11 @@ const uploadDir = 'static/uploads';
 
 const storeFS = ({ stream, filename }) => {
 	const id = 1;
-	fs.mkdirSync(uploadDir);
+
+	if (!fs.existsSync(uploadDir)) {
+		fs.mkdirSync(uploadDir);
+	}
+
 	const path = `${uploadDir}/${id}-${filename}`;
 	return new Promise((resolve, reject) => stream
 		.on('error', error => {

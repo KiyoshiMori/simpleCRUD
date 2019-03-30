@@ -24,7 +24,7 @@ export default class MainPage extends Component {
 
 	handleInput = e => this.setState({ [e.target.name]: e.target.value });
 
-	clearArticleFields = () => this.setState({ articleHeader: '', articleText: '' });
+	clearArticleFields = () => this.setState({ articleHeader: '', articleText: '', articleImage: null });
 
 	render() {
 		const { modalIsOpen, articleHeader, articleText, articleImage } = this.state;
@@ -106,7 +106,7 @@ export default class MainPage extends Component {
 											type="file"
 											onChange={({ target: { validity, files: [file] } }) => {
 												console.log({ valid: validity.valid, file });
-												validity.valid && this.setState({ articleImage: file })
+												validity.valid && this.setState({ articleImage: file });
 											}}
 										/>
 										<Button

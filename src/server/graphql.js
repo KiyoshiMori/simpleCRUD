@@ -23,10 +23,11 @@ export default () => {
 			})(req, res, next);
 		},
 		graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
-		graphqlExpress(req => ({
+		graphqlExpress((req, res) => ({
 			schema,
 			context: {
 				user: req.user,
+				setCookie: (name, value) => res.cookie(name, value),
 			},
 		})),
 	);

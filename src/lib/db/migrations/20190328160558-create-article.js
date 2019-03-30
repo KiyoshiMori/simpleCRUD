@@ -21,6 +21,9 @@ module.exports = {
 		author: {
 			type: Sequelize.STRING,
 		},
+		author_id: {
+			type: Sequelize.STRING,
+		},
 	}),
 	down: (queryInterface, Sequelize) => queryInterface.dropTable('articles'),
 };

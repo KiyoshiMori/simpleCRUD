@@ -1,5 +1,7 @@
 import path from 'path';
 
+console.log('WEBPACK', path.resolve(__dirname, '../../src/lib'));
+
 export default {
 	mode: 'development',
 	resolve: {

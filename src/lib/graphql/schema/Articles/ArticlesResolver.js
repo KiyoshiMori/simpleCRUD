@@ -1,16 +1,8 @@
 import fs from 'fs';
+import checkToken from '../../../helpers/checkToken';
 import db from '../../../db/models';
 
 const { articles, articlesimages } = db;
-
-const checkToken = async (user, cb, additionalCheck = true) => {
-	if (user?.username) {
-		if (additionalCheck) {
-			return await cb();
-		}
-	}
-	throw Error('Unauthorized');
-};
 
 const uploadDir = 'static/uploads';
 
@@ -45,7 +37,7 @@ const processUpload = async upload => {
 
 export default {
 	Query: {
-		async getArticles(_, __, { user }) {
+		async getArticles() {
 			return await articles.findAll({
 				include: [{
 					model: articlesimages,

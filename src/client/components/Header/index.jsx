@@ -5,11 +5,22 @@ import Heading from 'components/Heading';
 
 export default class Header extends Component {
 	render() {
+		const { loggined, username } = this.props;
+
 		return (
 			<div className={stylus.container}>
 				<Heading type="h1">simpleCrud</Heading>
 				<div className={stylus.buttonsGroup}>
-					<Heading type="h2">login</Heading>
+					{loggined
+						? (
+							<Heading type="h2">
+								Hello, { username }!
+							</Heading>
+						)
+						: (
+							<Heading type="h2">login</Heading>
+						)
+					}
 				</div>
 			</div>
 		);

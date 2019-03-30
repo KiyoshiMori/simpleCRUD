@@ -12,13 +12,16 @@ export default class ArticlesList extends Component {
 		data: PropTypes.arrayOf({
 			header: PropTypes.string.isRequired,
 		}).isRequired,
+		openModal: PropTypes.func.isRequired,
+		username: PropTypes.string,
+	};
+
+	static defaultProps = {
+		username: null,
 	};
 
 	render() {
-		const { data, openModal } = this.props;
-
-		// console.log('Article list data:', data);
-
+		const { data, openModal, username } = this.props;
 		return (
 			<Row className={styles.container}>
 				<Col size={12} className={styles.containerHeader}>
@@ -35,9 +38,20 @@ export default class ArticlesList extends Component {
 								className={styles.articleImage}
 							/>
 						</div>
-						<Heading type="h2" secondary>
-							{moment.unix(article.created_at / 1000).format('DD.MM.YYYY')}
-						</Heading>
+						<Row>
+							<Col size={6}>
+								<Heading type="h2" secondary>
+									{moment.unix(article.created_at / 1000).format('DD.MM.YYYY')}
+								</Heading>
+							</Col>
+							<Col size={6}>
+								{(username === article.author) && (
+									<Heading type="h2" secondary>
+										remove
+									</Heading>
+								)}
+							</Col>
+						</Row>
 						<Heading type="h2" bold>
 							{article.header}
 						</Heading>

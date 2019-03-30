@@ -27,12 +27,6 @@ db.authenticate().then(() => console.log('success'))
 
 server.use('/static', express.static('static'));
 
-if (typeof global.localStorage === "undefined" || global.localStorage === null) {
-	const LocalStorage = require('node-localstorage').LocalStorage;
-	global.localStorage = new LocalStorage('./scratch');
-}
-
-
 const done = () => {
 	if (isBuilt) return;
 

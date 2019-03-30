@@ -7,9 +7,12 @@ import RootResolver from './RootResolver';
 import ArticlesDefinition from './Articles/ArticlesDefinition';
 import ArticlesResolver from './Articles/ArticlesResolver';
 
+import UserDefinition from './User/UserDefinition';
+import UserResolver from './User/UserResolver';
+
 const index = makeExecutableSchema({
-	typeDefs: [RootDefinition, ArticlesDefinition],
-	resolvers: _.merge({}, RootResolver, ArticlesResolver),
+	typeDefs: [RootDefinition, ArticlesDefinition, UserDefinition],
+	resolvers: _.merge({}, RootResolver, ArticlesResolver, UserResolver),
 });
 
 export default index;

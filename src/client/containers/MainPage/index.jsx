@@ -102,13 +102,6 @@ export default class MainPage extends Component {
 											value={articleText}
 											onChange={this.handleInput}
 										/>
-										<input
-											type="file"
-											onChange={({ target: { validity, files: [file] } }) => {
-												console.log({ valid: validity.valid, file });
-												validity.valid && this.setState({ articleImage: file });
-											}}
-										/>
 										<Button
 											size="small"
 											secondary
@@ -119,6 +112,34 @@ export default class MainPage extends Component {
 											Save
 										</Button>
 									</form>
+								</Col>
+								<Col size={6} className={styles.modalContent}>
+									<label htmlFor="imgUpload" className={styles.modalLabel}>
+										<div className={styles.modalImageContainer}>
+											<img
+												className={styles.modalImage}
+												src={articleImage
+													? URL.createObjectURL(articleImage)
+													: '/static/placeholder.png'
+												}
+											/>
+											{!articleImage && (
+												<h1 className={styles.modalImageText}>
+													Browse
+												</h1>
+											)}
+										</div>
+									</label>
+									<input
+										className={styles.displayNone}
+										name="imgUpload"
+										id="imgUpload"
+										type="file"
+										onChange={({ target: { validity, files: [file] } }) => {
+											console.log({ valid: validity.valid, file });
+											validity.valid && this.setState({ articleImage: file });
+										}}
+									/>
 								</Col>
 							</Row>
 						)}

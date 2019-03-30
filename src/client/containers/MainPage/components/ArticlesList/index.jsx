@@ -30,7 +30,10 @@ export default class ArticlesList extends Component {
 				{data?.map(article => (
 					<Col size={3} className={styles.article}>
 						<div className={styles.articleImageContainer}>
-							<img src={article.articlesimage?.file_path || 'static/placeholder.png'} className={styles.articleImage} />
+							<img
+								src={article.articlesimage?.file_path || 'static/placeholder.png'}
+								className={styles.articleImage}
+							/>
 						</div>
 						<Heading type="h2" secondary>
 							{moment.unix(article.created_at / 1000).format('DD.MM.YYYY')}

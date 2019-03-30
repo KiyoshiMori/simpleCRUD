@@ -17,7 +17,7 @@ export default class ArticlesList extends Component {
 	render() {
 		const { data, openModal } = this.props;
 
-		console.log('Article list data:', data);
+		// console.log('Article list data:', data);
 
 		return (
 			<Row className={styles.container}>

@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const getArticles = gql`
-	query ($token: String) {
-		getArticles(input: { token: $token }) {
+	{
+		getArticles {
 			id
 			text
 			author
@@ -17,8 +17,8 @@ export const getArticles = gql`
 `;
 
 export const postArticle = gql`
-	mutation ($token: String, $text: String, $header: String, $file: Upload) {
-		createArticle(input: {token: $token, text: $text, header: $header, file: $file}) {
+	mutation ($text: String, $header: String, $file: Upload) {
+		createArticle(input: {text: $text, header: $header, file: $file}) {
 			id
 			author
 			header

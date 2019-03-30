@@ -35,16 +35,19 @@ export default class MainPage extends Component {
 			<Fragment>
 				<Query
 					query={getArticles}
+					errorPolicy="all"
 					variables={{
 						token: 'test',
 					}}
 				>
-					{({ data }) => (
-						<ArticlesList
-							data={data?.getArticles}
-							openModal={this.handleToggleModal}
-						/>
-					)}
+					{({ data, error }) => {
+						return (
+							<ArticlesList
+								data={data?.getArticles}
+								openModal={this.handleToggleModal}
+							/>
+						)}
+					}
 				</Query>
 				<Modal
 					isOpen={modalIsOpen}

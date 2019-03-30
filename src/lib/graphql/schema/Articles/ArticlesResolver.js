@@ -3,11 +3,11 @@ import db from '../../../db/models';
 
 const { articles, articlesimages } = db;
 
-const checkToken = async (input, cb) => {
-	if (input.token) {
+const checkToken = async (user, cb) => {
+	if (user?.username) {
 		return await cb();
 	}
-	throw Error('wrong token');
+	throw Error('Unauthorized');
 };
 
 const uploadDir = 'static/uploads';
@@ -22,9 +22,9 @@ const storeFS = ({ stream, filename }) => {
 	const path = `${uploadDir}/${id}-${filename}`;
 	return new Promise((resolve, reject) => stream
 		.on('error', error => {
-			if (stream.truncated)
-			// Delete the truncated file.
-			{ fs.unlinkSync(path); }
+			if (stream.truncated) {
+				fs.unlinkSync(path);
+			}
 			reject(error);
 		})
 		.pipe(fs.createWriteStream(path))
@@ -33,21 +33,19 @@ const storeFS = ({ stream, filename }) => {
 };
 
 const processUpload = async upload => {
-	const { createReadStream, filename, mimetype } = await upload;
-	const data = await upload;
-
-	console.log({ data });
+	const { createReadStream, filename } = await upload;
 
 	const stream = createReadStream();
-	const { id, path } = await storeFS({ stream, filename });
+
+	const { path } = await storeFS({ stream, filename });
 	return path;
 };
 
 export default {
 	Query: {
-		async getArticles(_, { input }) {
+		async getArticles(_, __, { user }) {
 			return await checkToken(
-				input,
+				user,
 				() => articles.findAll({
 					include: [{
 						model: articlesimages,
@@ -59,8 +57,12 @@ export default {
 		},
 	},
 	Mutation: {
-		async createArticle(_, { input }) {
-			const { token, header, text, file } = input;
+		async createArticle(_, { input }, { user }) {
+			const {
+				header,
+				text,
+				file,
+			} = input;
 
 			let file_path = null;
 
@@ -69,11 +71,11 @@ export default {
 			}
 
 			return await checkToken(
-				input,
+				user,
 				() => articles.create({
 					created_at: new Date(),
 					updated_at: new Date(),
-					author: 'test',
+					author: user.username,
 					header,
 					text,
 					articlesimage: {
@@ -84,10 +86,7 @@ export default {
 						model: articlesimages,
 					}],
 				}),
-			).then(post => {
-				console.log({ post, test: post.id });
-				return post;
-			});
+			);
 		},
 	},
 };

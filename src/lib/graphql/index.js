@@ -9,9 +9,11 @@ const domain = process.env.DOMEN || 'localhost';
 const client = new ApolloClient({
 	link: createUploadLink({
 		uri: `http://${domain}:${port}/graphql`,
+		credentials: 'include',
 	}),
 	cache: new InMemoryCache(),
 	connectToDevTools: true,
+	ssrMode: true,
 });
 
 export default client;

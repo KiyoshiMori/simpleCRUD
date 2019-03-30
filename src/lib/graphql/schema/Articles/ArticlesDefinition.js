@@ -1,8 +1,4 @@
 export default `
-	input getArticlesInput {
-		token: String
-	}
-	
 	type Image {
 		file_path: String
 	}
@@ -18,14 +14,13 @@ export default `
 	}
 	
 	input createArticleInput {
-		token: String
 		header: String
 		text: String
 		file: Upload
 	}
 
 	extend type Query {
-		getArticles(input: getArticlesInput): [articleResponse]
+		getArticles: [articleResponse]
 	}
 	
 	extend type Mutation {

@@ -21,7 +21,7 @@ export default class ArticlesList extends Component {
 	};
 
 	render() {
-		const { data, openModal, username } = this.props;
+		const { data, openModal, removeArticle, username } = this.props;
 		return (
 			<Row className={styles.container}>
 				<Col size={12} className={styles.containerHeader}>
@@ -44,11 +44,11 @@ export default class ArticlesList extends Component {
 									{moment.unix(article.created_at / 1000).format('DD.MM.YYYY')}
 								</Heading>
 							</Col>
-							<Col size={6}>
+							<Col size={6} className={styles.articleDescription}>
 								{(username === article.author) && (
-									<Heading type="h2" secondary>
+									<Button text onClick={() => removeArticle(article.id)}>
 										remove
-									</Heading>
+									</Button>
 								)}
 							</Col>
 						</Row>

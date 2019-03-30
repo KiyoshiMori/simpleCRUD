@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Query, Mutation } from 'react-apollo';
 import Modal from 'react-modal';
 
-import { getArticles, postArticle } from 'lib/graphql/queries/ArticlesQueries';
+import { getArticles, postArticle, removeArticle } from 'lib/graphql/queries/ArticlesQueries';
 
 import { Row, Col } from 'components/Grid';
 import Heading from 'components/Heading';
@@ -34,23 +34,35 @@ export default class MainPage extends Component {
 
 		return (
 			<Fragment>
-				<Query
-					query={getArticles}
-					errorPolicy="all"
-					variables={{
-						token: 'test',
-					}}
+				<Mutation
+					mutation={removeArticle}
+					refetchQueries={[
+						{
+							query: getArticles,
+						},
+					]}
 				>
-					{({ data }) => {
-						return (
-							<ArticlesList
-								data={data?.getArticles}
-								openModal={this.handleToggleModal}
-								username={username}
-							/>
-						)}
-					}
-				</Query>
+					{mutate => (
+						<Query
+							query={getArticles}
+							errorPolicy="all"
+							variables={{
+								token: 'test',
+							}}
+						>
+							{({ data }) => {
+								return (
+									<ArticlesList
+										data={data?.getArticles}
+										openModal={this.handleToggleModal}
+										removeArticle={id => mutate({ variables: { id } })}
+										username={username}
+									/>
+								)}
+							}
+						</Query>
+					)}
+				</Mutation>
 				<Modal
 					isOpen={modalIsOpen}
 					onRequestClose={this.handleToggleModal}
@@ -62,9 +74,6 @@ export default class MainPage extends Component {
 						refetchQueries={[
 							{
 								query: getArticles,
-								variables: {
-									token: 'test',
-								},
 							},
 						]}
 					>

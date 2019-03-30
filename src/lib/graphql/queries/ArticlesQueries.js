@@ -28,3 +28,11 @@ export const postArticle = gql`
 		}
 	}
 `;
+
+export const removeArticle = gql`
+	mutation ($id: Int) {
+		removeArticle(input: {id: $id}) {
+    		id
+  		}
+  	}
+`;

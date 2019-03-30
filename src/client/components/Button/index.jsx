@@ -12,6 +12,7 @@ export default class Row extends PureComponent {
 		icon: PropTypes.oneOf(['add']),
 		size: PropTypes.oneOf(['small', 'default']),
 		secondary: PropTypes.bool,
+		text: PropTypes.bool,
 		loading: PropTypes.bool,
 	};
 
@@ -20,15 +21,17 @@ export default class Row extends PureComponent {
 		icon: null,
 		size: 'default',
 		secondary: false,
+		text: false,
 		loading: false,
 	};
 
 	render() {
-		const { children, className, icon, size, secondary, loading, ...rest } = this.props;
+		const { children, className, icon, size, secondary, text, loading, ...rest } = this.props;
 		const classes = cx(
 			styles.button,
 			size && styles[`button${size}`],
 			secondary && styles.buttonSecondary,
+			text && styles.buttonText,
 			loading && styles.buttonLoading,
 			className,
 		);

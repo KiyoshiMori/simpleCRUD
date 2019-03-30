@@ -3,9 +3,11 @@ import db from '../../../db/models';
 
 const { articles, articlesimages } = db;
 
-const checkToken = async (user, cb) => {
+const checkToken = async (user, cb, additionalCheck = true) => {
 	if (user?.username) {
-		return await cb();
+		if (additionalCheck) {
+			return await cb();
+		}
 	}
 	throw Error('Unauthorized');
 };
@@ -80,6 +82,23 @@ export default {
 					text,
 					articlesimage: {
 						file_path,
+					},
+				}, {
+					include: [{
+						model: articlesimages,
+					}],
+				}),
+			);
+		},
+		async removeArticle(_, { input }, { user }) {
+			const { id } = input;
+
+			return await checkToken(
+				user,
+				() => articles.destroy({
+					where: {
+						id,
+						author: user.username,
 					},
 				}, {
 					include: [{

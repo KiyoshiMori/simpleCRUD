@@ -14,7 +14,10 @@ module.exports = () => {
 	});
 
 	articlesimages.associate = models => {
-		articlesimages.belongsTo(models.articles);
+		articlesimages.belongsTo(models.articles, {
+			foreignKeyConstraint: true,
+			onDelete: 'CASCADE',
+		});
 	};
 
 	return articlesimages;

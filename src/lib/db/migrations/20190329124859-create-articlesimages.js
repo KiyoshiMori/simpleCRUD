@@ -7,6 +7,7 @@ module.exports = {
 				model: 'articles',
 				key: 'id',
 			},
+			onDelete: 'cascade',
 		},
 		file_path: {
 			type: Sequelize.STRING,

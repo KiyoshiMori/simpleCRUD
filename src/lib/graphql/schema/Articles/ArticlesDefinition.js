@@ -18,6 +18,10 @@ export default `
 		text: String
 		file: Upload
 	}
+	
+	input removeArticleInput {
+		id: Int 
+	}
 
 	extend type Query {
 		getArticles: [articleResponse]
@@ -25,5 +29,6 @@ export default `
 	
 	extend type Mutation {
 		createArticle(input: createArticleInput): articleResponse
+		removeArticle(input: removeArticleInput): articleResponse
 	}
 `;

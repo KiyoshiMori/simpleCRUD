@@ -17,6 +17,7 @@ export default class MainPage extends Component {
 		modalIsOpen: false,
 		articleHeader: '',
 		articleText: '',
+		articleImage: null,
 	};
 
 	handleToggleModal = () => this.setState(state => ({ modalIsOpen: !state.modalIsOpen }));
@@ -26,9 +27,9 @@ export default class MainPage extends Component {
 	clearArticleFields = () => this.setState({ articleHeader: '', articleText: '' });
 
 	render() {
-		const { modalIsOpen, articleHeader, articleText } = this.state;
+		const { modalIsOpen, articleHeader, articleText, articleImage } = this.state;
 
-		console.log({ modalIsOpen });
+		console.log({ modalIsOpen, articleImage });
 
 		return (
 			<Fragment>
@@ -81,6 +82,7 @@ export default class MainPage extends Component {
 													header: articleHeader,
 													text: articleText,
 													token: 'test',
+													file: articleImage,
 												},
 											});
 											this.handleToggleModal();
@@ -99,6 +101,13 @@ export default class MainPage extends Component {
 											name="articleText"
 											value={articleText}
 											onChange={this.handleInput}
+										/>
+										<input
+											type="file"
+											onChange={({ target: { validity, files: [file] } }) => {
+												console.log({ valid: validity.valid, file });
+												validity.valid && this.setState({ articleImage: file })
+											}}
 										/>
 										<Button
 											size="small"

@@ -21,6 +21,7 @@ export default `
 		token: String
 		header: String
 		text: String
+		file: Upload
 	}
 
 	extend type Query {

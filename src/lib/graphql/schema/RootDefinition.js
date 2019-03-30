@@ -1,4 +1,6 @@
 export default (`
+	scalar Upload
+	
     type Query {
         _: Boolean
     }

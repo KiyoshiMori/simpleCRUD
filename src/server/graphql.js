@@ -1,5 +1,6 @@
 import express from 'express';
 import graphqlExpress from 'express-graphql';
+import { graphqlUploadExpress } from 'graphql-upload';
 import expressPlayground from 'graphql-playground-middleware-express';
 
 import index from '../lib/graphql/schema/index';
@@ -12,6 +13,7 @@ export default (server) => {
 
 	server.use(
 		'/graphql',
+		graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
 		graphqlExpress({
 			schema: index,
 		}),

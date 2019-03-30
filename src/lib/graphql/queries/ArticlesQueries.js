@@ -9,13 +9,16 @@ export const getArticles = gql`
 			header
 			created_at
 			updated_at
+			articlesimage {
+      			file_path
+			}
 		}
 	}
 `;
 
 export const postArticle = gql`
-	mutation ($token: String, $text: String, $header: String) {
-		createArticle(input: {token: $token, text: $text, header: $header}) {
+	mutation ($token: String, $text: String, $header: String, $file: Upload) {
+		createArticle(input: {token: $token, text: $text, header: $header, file: $file}) {
 			id
 			author
 			header

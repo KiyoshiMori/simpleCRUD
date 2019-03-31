@@ -30,6 +30,6 @@ export default new Strategy(options, (jwt_payload, next) => {
 	if (jwt_payload?.username) {
 		next(null, jwt_payload);
 	} else {
-		next(null, jwt_payload);
+		next(null, null);
 	}
 });

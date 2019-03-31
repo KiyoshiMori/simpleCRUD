@@ -21,14 +21,16 @@ export default class ArticlesList extends Component {
 	};
 
 	render() {
-		const { data, openModal, removeArticle, username } = this.props;
+		const { data, openModal, removeArticle, username, loggined } = this.props;
 		return (
 			<Row className={styles.container}>
 				<Col size={12} className={styles.containerHeader}>
 					<Heading type="h1">Articles</Heading>
-					<Button icon="plus" onClick={openModal}>
-						Post an article
-					</Button>
+					{loggined && (
+						<Button icon="plus" onClick={openModal}>
+							Post an article
+						</Button>
+					)}
 				</Col>
 				{data?.map(article => (
 					<Col size={3} className={styles.article}>

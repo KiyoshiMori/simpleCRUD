@@ -10,7 +10,7 @@ export default class Row extends PureComponent {
 		children: PropTypes.node.isRequired,
 		className: PropTypes.string,
 		icon: PropTypes.oneOf(['add']),
-		size: PropTypes.oneOf(['small', 'default']),
+		size: PropTypes.oneOf(['small', 'default', 'wide']),
 		secondary: PropTypes.bool,
 		text: PropTypes.bool,
 		loading: PropTypes.bool,

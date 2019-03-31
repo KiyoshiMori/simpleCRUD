@@ -26,8 +26,10 @@ export default () => {
 		graphqlExpress((req, res) => ({
 			schema,
 			context: {
+				res,
 				user: req.user,
 				setCookie: (name, value) => res.cookie(name, value),
+				logout: req.logout,
 			},
 		})),
 	);

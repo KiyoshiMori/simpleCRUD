@@ -17,6 +17,7 @@ export default `
 	extend type Query {
 		getInfo: Info
 		login(input: signInput): signResponse
+		logout: Boolean
 	}
 	
 	extend type Mutation {

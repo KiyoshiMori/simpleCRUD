@@ -36,6 +36,10 @@ export default {
 				return { token };
 			});
 		},
+		async logout(_, __, { logout, res }) {
+			res.clearCookie('jwt');
+			return logout();
+		},
 	},
 	Mutation: {
 		async signup(_, { input }, { setCookie }) {

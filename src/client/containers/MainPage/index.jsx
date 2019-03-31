@@ -27,7 +27,6 @@ export default class MainPage extends Component {
 	clearArticleFields = () => this.setState({ articleHeader: '', articleText: '', articleImage: null });
 
 	render() {
-		const { username } = this.props;
 		const { modalIsOpen, articleHeader, articleText, articleImage } = this.state;
 
 		console.log({ modalIsOpen, articleImage });
@@ -56,7 +55,7 @@ export default class MainPage extends Component {
 										data={data?.getArticles}
 										openModal={this.handleToggleModal}
 										removeArticle={id => mutate({ variables: { id } })}
-										username={username}
+										{...this.props}
 									/>
 								)}
 							}

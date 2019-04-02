@@ -33,7 +33,7 @@ export default class ArticlesList extends Component {
 					)}
 				</Col>
 				{data?.map(article => (
-					<Col size={3} className={styles.article}>
+					<Col size={3} sizeMd={6} className={styles.article}>
 						<div className={styles.articleImageContainer}>
 							<img
 								src={article.articlesimage?.file_path || 'static/placeholder.png'}
@@ -41,12 +41,12 @@ export default class ArticlesList extends Component {
 							/>
 						</div>
 						<Row>
-							<Col size={6}>
+							<Col size={6} sizeMd={6}>
 								<Heading type="h2" secondary>
 									{moment.unix(article.created_at / 1000).format('DD.MM.YYYY')}
 								</Heading>
 							</Col>
-							<Col size={6} className={styles.articleDescription}>
+							<Col size={6} sizeMd={6} className={styles.articleDescription}>
 								{(username === article.author) && (
 									<Button text onClick={() => removeArticle(article.id)}>
 										remove

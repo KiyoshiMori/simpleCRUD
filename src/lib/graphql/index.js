@@ -6,6 +6,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 const port = process.env.PORT || 8080;
 const domain = process.env.DOMEN || 'localhost';
 
+console.log({ env: process.env });
+
 const client = new ApolloClient({
 	link: createUploadLink({
 		uri: `http://${domain}:${port}/graphql`,

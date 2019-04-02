@@ -22,6 +22,8 @@ server.use(cookieParser());
 server.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
 
+console.log({ env: process.env });
+
 db.authenticate().then(() => console.log('success'))
 	.catch(err => console.log('ERROR' + err));
 

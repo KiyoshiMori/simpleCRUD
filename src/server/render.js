@@ -12,6 +12,7 @@ import client from '../lib/graphql';
 const Html = ({ content, Scripts, Css, Styles }) => (
 	<html>
 		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			<title>RabbitCRUD</title>
 			<Styles />
 		</head>
